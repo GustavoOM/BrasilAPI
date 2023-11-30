@@ -3,7 +3,7 @@ const axios = require('axios');
 const requestUrl = `${global.SERVER_URL}/api/cpf/v1`;
 
 describe('api/cpf/v1 (E2E)', () => {
-  test('Utilizando um CNPJ válido: 54083180013', async () => {
+  test('Utilizando um CPF válido: 54083180013', async () => {
     const response = await axios.get(`${requestUrl}/54083180013`);
     const { data, status } = response;
 
@@ -14,7 +14,7 @@ describe('api/cpf/v1 (E2E)', () => {
     expect(data.isValid).toEqual(true);
   });
 
-  test('Utilizando um CNPJ válido com formatação: 540.831.800-13', async () => {
+  test('Utilizando um CPF válido com formatação: 540.831.800-13', async () => {
     try {
       await axios.get(`${requestUrl}/540.831.800-13`);
     } catch (error) {
