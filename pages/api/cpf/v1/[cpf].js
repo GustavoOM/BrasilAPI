@@ -8,7 +8,7 @@ import { cpfIsValid, getCpfRegionAndUfs, formatCpf } from '@/services/cpf/cpf';
 
 async function regionOfCpf(request, response, next) {
   try {
-    const requestedCpf = request.query.cpf.replaceAll(/[-.]/g, '');
+    const requestedCpf = request.query.cpf.replace(/[-.]/g, '');
     const formatedCpf = formatCpf(requestedCpf);
 
     if (!/^[0-9]+$/.test(requestedCpf)) {
@@ -45,9 +45,11 @@ async function regionOfCpf(request, response, next) {
     });
   } catch (error) {
     if (error instanceof BaseError) {
+      console.log(error);
       return next(error);
     }
 
+    console.log(error);
     throw new InternalError({
       message: 'Todos os serviços de CPF retornaram erro.',
       type: 'service_error',
