@@ -36,7 +36,7 @@ describe('api/cpf/v1 (E2E)', () => {
       const { response } = error;
       const { data, status } = response;
 
-      expect(status).toEqual(404);
+      expect(status).toEqual(400);
       expect(data).toEqual({
         message: 'CPF 000.000.000-00 inválido.',
         name: 'BadRequestError',
